@@ -20,7 +20,7 @@ export default function Home() {
               />
             </Link>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col lg:flex-row items-center gap-2">
             <Link
               href="/register"
               className="w-[6.4375rem] h-[2.375rem] text-xs font-medium bg-intellibin-primary text-white rounded-md flex justify-center items-center  hover:bg-intellibin-primary/90 duration-200"
@@ -37,7 +37,7 @@ export default function Home() {
         </nav>
       </header>
       <main className="bg-[#f2f2f2] font-inter">
-        <div className="bg-intellibin-primary flex justify-center items-center gap-3 py-3 text-white">
+        <div className="bg-intellibin-primary flex justify-center items-center gap-3 py-3 text-white text-sm lg:text-base px-5">
           <p>Let’s work together to make the planet greener</p>
           <Link
             href="https://lawma.gov.ng/"
@@ -46,7 +46,7 @@ export default function Home() {
             Download App
           </Link>
         </div>
-        <section className="relative min-h-[748px] ">
+        <section className="relative min-h-[448px] lg:min-h-[748px] ">
           <Image
             src="/images/intellibin_hero_bg.jpg"
             fill
@@ -54,7 +54,7 @@ export default function Home() {
             alt=""
             className="object-cover"
           />
-          <div className="text-white bg-intellibinblack-100/90 relative w-full h-full flex flex-col justify-center items-center text-center min-h-[748px] py-14">
+          <div className="text-white bg-intellibinblack-100/90 relative w-full h-full flex flex-col justify-center items-center text-center min-h-[448px] lg:min-h-[748px] py-14">
             <h2 className="text-5xl lg:text-9xl font-bold">Intellibin</h2>
             <p className="max-w-prose mt-4 mb-12">
               Nec massa viverra eget feugiat pellentesque. Feugiat adipiscing
@@ -83,21 +83,21 @@ export default function Home() {
           </div>
         </section>
         <section>
-          <div className=" max-w-[60.125rem] mx-auto px-5 pb-10 pt-32 text-center font-inter">
+          <div className=" max-w-[60.125rem] mx-auto px-5 py-5 lg:pb-10 lg:pt-32 text-center font-inter">
             <h2 className="text-[#111111] text-xl font-bold text-center">
               Discover
             </h2>
-            <h3 className="text-xl lg:text-[4rem] leading-[4.85rem] font-bold text-intellibingrey-700 ">
+            <h3 className="text-xl lg:text-[4rem] lg:leading-[4.85rem] font-bold text-intellibingrey-700 ">
               Elevate your eco-game and make a positive impact with Intellibin
             </h3>
-            <p className="text-xl text-intellibingrey-700 mt-7 max-w-prose mx-auto">
+            <p className="text-sm lg:text-xl text-intellibingrey-700 mt-7 max-w-prose mx-auto">
               Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum
               sit nunc in eros scelerisque sed. Commodo in viverra nunc,
               ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis,
               pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo
               eleifend ultricies purus iaculis.
             </p>
-            <div className="relative h-[314px] mt-10">
+            <div className="relative h-[314px] mt-5 lg:mt-10">
               <Image
                 src="/images/intellibin_dark_example.png"
                 fill
@@ -108,13 +108,13 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="flex flex-col items-center overflow-x-clip">
-          <div className="py-10 max-w-[60.125rem]  px-5 text-left">
-            <h2 className="text-[#1d1d1f] font-bold text-balance text-[4rem] leading-[4.375rem]">
+        <section className="flex flex-col items-center ">
+          <div className="py-5 lg:py-10 max-w-[60.125rem]  px-5 text-left">
+            <h2 className="text-[#1d1d1f] font-bold text-balance text-xl lg:text-[4rem] lg:leading-[4.375rem]">
               Explore our range of <br />
               services
             </h2>
-            <p className="mt-5 text-lg max-w-prose text-[#6B7280]">
+            <p className="mt-5 text-sm lg:text-lg max-w-prose text-[#6B7280]">
               Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum
               sit nunc in eros scelerisque sed. Commodo in viverra nunc,
               ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis,
