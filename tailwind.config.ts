@@ -1,13 +1,14 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -18,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        inter: ["var(--font-inter)", ...fontFamily.sans],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -53,6 +57,7 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         intellibingrey: {
+          700: "hsl(var(--intellibin-grey-700))",
           500: "hsl(var(--intellibin-grey-500))",
           400: "hsl(var(--intellibin-grey-400))",
           300: "hsl(var(--intellibin-grey-300))",
@@ -61,7 +66,7 @@ const config = {
         },
         intellibin: {
           info: "hsl(var(--intellibin-info))",
-          success:"hsl(var(--intellibin-success))",
+          success: "hsl(var(--intellibin-success))",
           warning: "hsl(var(--intellibin-warning))",
           error: "hsl(var(--intellibin-error))",
           primary: "hsl(var(--intellibin-primary))",
@@ -72,7 +77,7 @@ const config = {
           300: "hsl(var(--intellibin-black-300))",
           200: "hsl(var(--intellibin-black-200))",
           100: "hsl(var(--intellibin-black-100))",
-        }
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -96,6 +101,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
