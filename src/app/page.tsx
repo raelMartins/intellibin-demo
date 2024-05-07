@@ -40,7 +40,7 @@ export default function Home() {
               />
             </Link>
           </div>
-          <div className="hidden md:flex flex-col lg:flex-row items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
             <Link
               href="/register"
               className="w-[6.4375rem] h-[2.375rem] text-xs font-medium bg-intellibin-primary text-white rounded-md flex justify-center items-center  hover:bg-intellibin-primary/90 duration-200"
