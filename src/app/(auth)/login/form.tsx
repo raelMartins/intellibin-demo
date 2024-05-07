@@ -38,9 +38,9 @@ const Loginform = () => {
 
   return (
     <form onSubmit={formik.handleSubmit} className="max-w-sm mx-auto" >
-        <h1 className='flex text-intellibin-primary font-bold'>Welcome, Ben</h1>
+        <h1 className='flex text-intellibin-primary font-bold text-4xl leading-10 mb-4'>Welcome, Ben</h1>
       <div className="mb-4">
-        <label htmlFor="emailOrPhone" className="block text-gray-700">Email or Phone</label>
+        <label htmlFor="emailOrPhone" className="block font-normal leading-6 text-base text-intellibingrey-400">Email or Phone</label>
         <input
           id="emailOrPhone"
           name="emailOrPhone"
@@ -48,7 +48,7 @@ const Loginform = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.emailOrPhone}
-          className="border-intellibin-grey-500 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 w-full py-2 px-3"
+          className=" rounded-md border-intellibingrey-700 shadow-sm focus:border-intellibin-primary w-full py-2 px-3"
         />
         {formik.touched.emailOrPhone && formik.errors.emailOrPhone ? (
           <div className="text-red-500 text-sm">{formik.errors.emailOrPhone}</div>
@@ -56,7 +56,7 @@ const Loginform = () => {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="password" className="block text-gray-700">Password</label>
+        <label htmlFor="password" className="block font-normal leading-6 text-base text-intellibingrey-400">Password</label>
         <input
           id="password"
           name="password"
@@ -64,14 +64,14 @@ const Loginform = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.password}
-          className="border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 w-full py-2 px-3"
+          className="rounded-md border-intellibingrey-700 shadow-sm focus:border-intellibin-primary w-full py-2 px-3"
         />
         {formik.touched.password && formik.errors.password ? (
           <div className="text-red-500 text-sm">{formik.errors.password}</div>
         ) : null}
       </div>
 
-      <div className="flex flex-col items-left justify-between mb-4">
+      <div className="flex flex-col-reverse items-left justify-between mb-4">
         <div>
           <input
             type="checkbox"
@@ -82,16 +82,16 @@ const Loginform = () => {
             onBlur={formik.handleBlur}
             checked={formik.values.rememberMe}
           />
-          <label htmlFor="rememberMe" className="ml-2 text-gray-700">Remember me</label>
+          <label htmlFor="rememberMe" className="ml-2 font-normal leading-6 text-base text-intellibingrey-400">Remember login details on next login</label>
         </div>
         <div>
           <Link href="/forgot-password">
-            <div className="text-blue-500 hover:text-blue-700">Forgot Password?</div>
+            <div className="font-bold text-intellibin-primary text-base mb-4 ">Forgot Password ?</div>
           </Link>
         </div>
       </div>
 
-      <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50">Login</button>
+      <button type="submit" className="w-full bg-intellibin-primary text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50">Login</button>
     </form>
   );
 };

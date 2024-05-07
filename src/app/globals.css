@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.me {
+/* .me {
   color: hsl(184, 9%, 62%);
   background-color: hsl(217, 19%, 27%);
-}
+} */
 @layer base {
   :root {
     --background: 0 0% 100%;
