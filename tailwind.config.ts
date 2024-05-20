@@ -22,6 +22,9 @@ const config = {
       fontFamily: {
         inter: ["var(--font-inter)", ...fontFamily.sans],
       },
+      maxHeight: {
+        '3/4': '75%',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -72,6 +75,7 @@ const config = {
           primary: "hsl(var(--intellibin-primary))",
           secondary: "hsl(var(--intellibin-secondary))",
           secondaryNeutral: "hsl(var(--intellibin-secondary-neutral))",
+          primaryBackground: "hsl(var(--intellibin-primary-background))",
         },
         intellibinblack: {
           300: "hsl(var(--intellibin-black-300))",

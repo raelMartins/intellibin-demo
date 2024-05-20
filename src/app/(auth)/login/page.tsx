@@ -1,19 +1,21 @@
 import React from 'react'
 import Form from './form'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Login = () => {
   return (
-    <div className='flex flex-col'>
-        <div>
-        <Form/>
-        <div>
-            <Image src="/images/Intellibin_Logo Main.png" alt="login" width={500} height={500} />
-
-        </div>
-        </div>
-        
+      <div className="flex justify-center items-center h-screen ">
+    <div className="mx-4 w-1/2 flex  justify-center items-center h-screen">
+      <Form /> 
     </div>
+    <div className="mx-4 w-1/2  flex justify-center items-center h-screen bg-intellibin-primaryBackground">   
+      <Image src="/images/Intellibin_Logo Main.png" alt="login" width={250} height={250} />
+    </div>
+  </div>
+  
+    
+  
   )
 }
 
