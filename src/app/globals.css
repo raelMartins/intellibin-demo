@@ -5,6 +5,7 @@
 .me {
   color: hsl(184, 9%, 62%);
   background-color: hsl(217, 19%, 27%);
+  color: hsl(153, 100%, 98%);
 }
 @layer base {
   :root {
@@ -30,6 +31,8 @@
     --intellibin-primary: 163 94% 24%;
     --intellibin-secondary: 204 70% 53%;
     --intellibin-secondary-neutral: 184 9% 62%;
+
+    --intellibin-very-light-green: 153 100% 98;
 
     --card: 0 0% 100%;
     --card-foreground: 184 9% 62%;
