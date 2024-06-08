@@ -57,7 +57,7 @@ const SignupForm = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="max-w-lg mx-auto w-[538px] pt-[40px] pr-[24px] pb-[40px] pl-[24px] h-3/4">
+    <form onSubmit={formik.handleSubmit} className="max-w-lg mx-auto w-[538px] pt-[40px] pr-[24px] pb-[40px] pl-[24px] ">
       <h1 className="flex text-intellibin-primary font-bold text-4xl leading-10 ">
           Sign Up
         </h1>
