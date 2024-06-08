@@ -10,15 +10,16 @@ const LayoutLinks = () => {
   const pathname = usePathname();
   return (
     <>
-      <ul className="pt-[4.5rem] grow flex flex-col gap-4">
+      <ul className="flex grow flex-col gap-4 pt-[4.5rem]">
         <li>
           <Link
             href="/home"
             className={cn(
-              "flex gap-3 items-center py-2 pr-3 pl-2 text-sm leading-[21px] font-semibold",
+              "flex items-center gap-3 py-2 pl-2 pr-3 text-sm font-semibold leading-[21px]",
               {
-                "bg-intellibin-primary text-white": pathname === "/home",
-              }
+                "rounded-lg bg-intellibin-primary text-white":
+                  pathname === "/home",
+              },
             )}
           >
             <span>
@@ -31,10 +32,11 @@ const LayoutLinks = () => {
           <Link
             href="/status"
             className={cn(
-              "flex gap-3 items-center py-2 pr-3 pl-2 text-sm leading-[21px] font-semibold",
+              "flex items-center gap-3 py-2 pl-2 pr-3 text-sm font-semibold leading-[21px]",
               {
-                "bg-intellibin-primary text-white": pathname === "/status",
-              }
+                "rounded-lg bg-intellibin-primary text-white":
+                  pathname === "/status",
+              },
             )}
           >
             <span>
@@ -51,6 +53,7 @@ const LayoutLinks = () => {
                   strokeMiterlimit="10"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  className={`${pathname === "/status" ? "stroke-white" : ""}`}
                 />
               </svg>
             </span>
@@ -61,11 +64,11 @@ const LayoutLinks = () => {
           <Link
             href="/history"
             className={cn(
-              "flex gap-3 items-center py-2 pr-3 pl-2 text-sm leading-[21px] font-semibold",
+              "flex items-center gap-3 py-2 pl-2 pr-3 text-sm font-semibold leading-[21px]",
               {
-                "bg-intellibin-primary text-white rounded-lg":
+                "rounded-lg bg-intellibin-primary text-white":
                   pathname === "/history",
-              }
+              },
             )}
           >
             <span>
