@@ -16,8 +16,14 @@ const Page = () => {
         Good afternoon Ben!
       </h2>
       <div className="flex flex-col gap-5">
-        <div className="flex w-full flex-col gap-6 rounded-xl bg-intellibin-primary p-5 text-white md:gap-10">
-          <div className="flex justify-between">
+        <div className="relative flex w-full flex-col gap-6 overflow-clip rounded-xl bg-intellibin-primary p-5 text-white md:gap-10">
+          <Image
+            src="/images/intellibin_frame_green.png"
+            fill
+            className="top-5 w-full object-contain"
+            alt=""
+          />
+          <div className="relative flex justify-between">
             <div className="flex flex-col gap-3 text-xs md:text-sm">
               <p>User ID: A00112233</p>
               <p className="flex items-center gap-2">
@@ -41,7 +47,7 @@ const Page = () => {
               <p className="text-[2.5rem] font-semibold leading-[44px]">300</p>
             </div>
           </div>
-          <div className="flex items-center gap-3 text-xs md:text-sm">
+          <div className="relative flex items-center gap-3 text-xs md:text-sm">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1">
                 <span>
