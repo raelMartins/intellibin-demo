@@ -74,6 +74,10 @@ const config = {
           secondaryNeutral: "hsl(var(--intellibin-secondary-neutral))",
           veryLightGreen: "hsl(var(--intellibin-very-light-green))",
         },
+        intellibinGRAY: {
+          900: "hsl(var(--intellibin-GRAY-900))",
+          600: "hsl(var(--intellibin-GRAY-600))",
+        },
         intellibinblack: {
           300: "hsl(var(--intellibin-black-300))",
           200: "hsl(var(--intellibin-black-200))",

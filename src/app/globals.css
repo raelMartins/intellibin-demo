@@ -6,6 +6,8 @@
   color: hsl(184, 9%, 62%);
   background-color: hsl(217, 19%, 27%);
   color: hsl(153, 100%, 98%);
+  color: hsl(220, 43%, 11%);
+  color: hsl(215, 14%, 34%);
 }
 @layer base {
   :root {
@@ -27,6 +29,9 @@
     --intellibin-black-100: 0 0% 0%;
     --intellibin-black-200: 0 0% 11%;
     --intellibin-black-300: 0 0% 16%;
+
+    --intellibin-GRAY-900: 220 43% 11%;
+    --intellibin-GRAY-600: 215 14% 34%;
 
     --intellibin-primary: 163 94% 24%;
     --intellibin-secondary: 204 70% 53%;
