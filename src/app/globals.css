@@ -4,6 +4,10 @@
 
 .me {
   color: hsl(184, 9%, 62%);
+  background-color: hsl(217, 19%, 27%);
+  color: hsl(153, 100%, 98%);
+  color: hsl(220, 43%, 11%);
+  color: hsl(215, 14%, 34%);
   background-color: hsl(152, 81%, 96%);
 }
 @layer base {
@@ -27,10 +31,15 @@
     --intellibin-black-200: 0 0% 11%;
     --intellibin-black-300: 0 0% 16%;
 
+    --intellibin-GRAY-900: 220 43% 11%;
+    --intellibin-GRAY-600: 215 14% 34%;
+
     --intellibin-primary: 163 94% 24%;
     --intellibin-primary-background: 152 81 96%;
     --intellibin-secondary: 204 70% 53%;
     --intellibin-secondary-neutral: 184 9% 62%;
+
+    --intellibin-very-light-green: 153 100% 98;
 
     --card: 0 0% 100%;
     --card-foreground: 184 9% 62%;
