@@ -48,7 +48,7 @@ export default function Home() {
               Sign Up
             </Link>
             <Link
-              href="wwww.lawma.gov.ng"
+              href="/login"
               className="w-[6.4375rem] h-[2.375rem] text-xs font-medium bg-white rounded-md text-intellibin-primary border border-solid border-intellibin-primary flex justify-center items-center hover:bg-white/50 duration-200"
             >
               Login
