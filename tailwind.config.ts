@@ -22,6 +22,7 @@ const config = {
       fontFamily: {
         inter: ["var(--font-inter)", ...fontFamily.sans],
       },
+     
       maxHeight: {
         '3/4': '75%',
       },

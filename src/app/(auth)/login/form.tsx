@@ -1,6 +1,9 @@
 "use client";
 import { useFormik } from "formik";
 import Link from "next/link";
+import eyeicon from "../../../../public/images/intellibin_eye_icon.png"
+import { useState } from "react";
+import Image from "next/image";
 
 interface FormValues {
   emailOrPhone: string;
@@ -23,6 +26,7 @@ const validate = (values: FormValues) => {
 };
 
 const Loginform = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const formik = useFormik({
     initialValues: {
       emailOrPhone: "",
@@ -42,7 +46,7 @@ const Loginform = () => {
         onSubmit={formik.handleSubmit}
         className="max-w-lg mx-auto w-[538px] pt-[40px] pr-[24px] pb-[40px] pl-[24px]"
       >
-        <h1 className="flex text-intellibin-primary font-bold text-4xl leading-10 mb-4">
+        <h1 className="flex text-intellibin-primary font-bold text-4xl leading-10 mb-4 ">
           Welcome, Ben!
         </h1>
         <div className="mb-4">
@@ -56,10 +60,11 @@ const Loginform = () => {
             id="emailOrPhone"
             name="emailOrPhone"
             type="text"
+            placeholder="Text"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.emailOrPhone}
-            className=" rounded-md border-intellibingrey-700 shadow-sm focus:border-intellibin-primary w-full py-2 px-3"
+            className=" rounded-md w-full py-2 px-3 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary "
           />
           {formik.touched.emailOrPhone && formik.errors.emailOrPhone ? (
             <div className="text-red-500 text-sm">
@@ -75,15 +80,28 @@ const Loginform = () => {
           >
             Password
           </label>
+          <div className="relative flex items-center"> 
           <input
             id="password"
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
-            className="rounded-md border-intellibingrey-700 shadow-sm focus:border-intellibin-primary w-full py-2 px-3"
+            className="rounded-md w-full py-2 px-3 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary "
           />
+          <Image
+                src="/images/intellibin_eye_icon.png"
+                alt=""
+                sizes=""
+                className="absolute right-3 cursor-pointer"
+                width={20}
+                height={20}
+                onClick={() => setShowPassword((prevState) => !prevState)}
+              />
+              </div>
+          
+          
           {formik.touched.password && formik.errors.password ? (
             <div className="text-red-500 text-sm">{formik.errors.password}</div>
           ) : null}
