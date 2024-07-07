@@ -1,7 +1,9 @@
 import React from "react";
 
 const Page = () => {
-  return <div>This is the Profile Page</div>;
+  return <div>
+    <p>flex</p>
+  </div>;
 };
 
 export default Page;
