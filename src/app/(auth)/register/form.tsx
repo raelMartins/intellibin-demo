@@ -1,11 +1,17 @@
 "use client";
-import React, { useState } from "react";
 import { useFormik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { registerUser } from "../actions";
+import { useToast } from "~/components/ui/use-toast";
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [registerState, setRegisterState] = useState<
+    "idle" | "error" | "submitting"
+  >("idle");
+  const { toast } = useToast();
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -16,8 +22,37 @@ const SignupForm = () => {
       confirmPassword: "",
       confirmPrivacy: false,
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      if (registerState === "submitting") {
+        return;
+      }
+
+      console.log(values);
+      try {
+        setRegisterState("submitting");
+        const { status, message } = await registerUser({
+          email: values.email,
+          password: values.password,
+          confirm_password: values.confirmPassword,
+        });
+        if (status === "error") {
+          toast({
+            description: message ?? "Something went wrong",
+            variant: "destructive",
+          });
+          setRegisterState("error");
+          return;
+        }
+
+        toast({
+          description: message ?? "User registered successfully",
+          variant: "success",
+        });
+        setRegisterState("idle");
+      } catch (error) {
+        setRegisterState("error");
+        toast({ description: "Something went wrong", variant: "destructive" });
+      }
     },
     validate: (values) => {
       const errors: {
@@ -30,9 +65,9 @@ const SignupForm = () => {
         confirmPrivacy?: string;
       } = {};
 
-      if (!values.fullName) {
-        errors.fullName = "Required";
-      }
+      // if (!values.fullName) {
+      //   errors.fullName = "Required";
+      // }
       if (!values.email) {
         errors.email = "Required";
       } else if (
@@ -40,12 +75,12 @@ const SignupForm = () => {
       ) {
         errors.email = "Invalid email address";
       }
-      if (!values.location) {
-        errors.location = "Required";
-      }
-      if (!values.phoneNumber) {
-        errors.phoneNumber = "Required";
-      }
+      // if (!values.location) {
+      //   errors.location = "Required";
+      // }
+      // if (!values.phoneNumber) {
+      //   errors.phoneNumber = "Required";
+      // }
       if (!values.password) {
         errors.password = "Required";
       }
@@ -64,18 +99,18 @@ const SignupForm = () => {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="max-w-lg mx-auto w-[538px] pt-[40px] pr-[24px] pb-[40px] pl-[24px] "
+      className="mx-auto w-[538px] max-w-lg pb-[40px] pl-[24px] pr-[24px] pt-[40px]"
     >
-      <h1 className="flex text-intellibin-primary font-bold text-4xl leading-10 ">
+      <h1 className="flex text-4xl font-bold leading-10 text-intellibin-primary">
         Sign Up
       </h1>
-      <p className="font-normal leading-6 text-base text-intellibingrey-400 mb-4 ">
+      <p className="mb-4 text-base font-normal leading-6 text-intellibingrey-400">
         Create an account to get started
       </p>
       <div className="mb-4">
         <label
           htmlFor="fullName"
-          className="block font-normal leading-6 text-base text-intellibingrey-400"
+          className="block text-base font-normal leading-6 text-intellibingrey-400"
         >
           Full Name
         </label>
@@ -85,15 +120,15 @@ const SignupForm = () => {
           type="text"
           onChange={formik.handleChange}
           value={formik.values.fullName}
-          className=" rounded-md w-full py-2 px-3 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary "
+          className="w-full rounded-md px-3 py-2 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary"
         />
         {formik.errors.fullName ? <div>{formik.errors.fullName}</div> : null}
       </div>
 
-      <div className="mb-4 ">
+      <div className="mb-4">
         <label
           htmlFor="email"
-          className="block font-normal leading-6 text-base text-intellibingrey-400"
+          className="block text-base font-normal leading-6 text-intellibingrey-400"
         >
           Email Address
         </label>
@@ -103,7 +138,7 @@ const SignupForm = () => {
           type="email"
           onChange={formik.handleChange}
           value={formik.values.email}
-          className=" rounded-md w-full py-2 px-3 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary "
+          className="w-full rounded-md px-3 py-2 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary"
         />
         {formik.errors.email ? <div>{formik.errors.email}</div> : null}
       </div>
@@ -111,7 +146,7 @@ const SignupForm = () => {
       <div className="mb-4">
         <label
           htmlFor="location"
-          className="block font-normal leading-6 text-base text-intellibingrey-400"
+          className="block text-base font-normal leading-6 text-intellibingrey-400"
         >
           Location
         </label>
@@ -121,7 +156,7 @@ const SignupForm = () => {
           type="text"
           onChange={formik.handleChange}
           value={formik.values.location}
-          className=" rounded-md w-full py-2 px-3 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary "
+          className="w-full rounded-md px-3 py-2 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary"
         />
         {formik.errors.location ? <div>{formik.errors.location}</div> : null}
       </div>
@@ -129,7 +164,7 @@ const SignupForm = () => {
       <div className="mb-4">
         <label
           htmlFor="phoneNumber"
-          className="block font-normal leading-6 text-base text-intellibingrey-400"
+          className="block text-base font-normal leading-6 text-intellibingrey-400"
         >
           Phone Number
         </label>
@@ -139,7 +174,7 @@ const SignupForm = () => {
           type="text"
           onChange={formik.handleChange}
           value={formik.values.phoneNumber}
-          className=" rounded-md w-full py-2 px-3 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary "
+          className="w-full rounded-md px-3 py-2 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary"
         />
         {formik.errors.phoneNumber ? (
           <div>{formik.errors.phoneNumber}</div>
@@ -149,7 +184,7 @@ const SignupForm = () => {
       <div className="mb-4">
         <label
           htmlFor="password"
-          className="block font-normal leading-6 text-base text-intellibingrey-400"
+          className="block text-base font-normal leading-6 text-intellibingrey-400"
         >
           Password
         </label>
@@ -161,7 +196,7 @@ const SignupForm = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
-            className="rounded-md w-full py-2 px-3 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary "
+            className="w-full rounded-md px-3 py-2 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary"
           />
           <Image
             src="/images/intellibin_eye_icon.png"
@@ -175,26 +210,26 @@ const SignupForm = () => {
         </div>
 
         {formik.touched.password && formik.errors.password ? (
-          <div className="text-red-500 text-sm">{formik.errors.password}</div>
+          <div className="text-sm text-red-500">{formik.errors.password}</div>
         ) : null}
       </div>
 
       <div className="mb-4">
         <label
           htmlFor="confirmpassword"
-          className="block font-normal leading-6 text-base text-intellibingrey-400"
+          className="block text-base font-normal leading-6 text-intellibingrey-400"
         >
           Confirm Password
         </label>
         <div className="relative flex items-center">
           <input
-            id="password"
-            name="password"
+            id="confirmPassword"
+            name="confirmPassword"
             type={showPassword ? "text" : "password"}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.password}
-            className="rounded-md w-full py-2 px-3 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary "
+            value={formik.values.confirmPassword}
+            className="w-full rounded-md px-3 py-2 ring-1 ring-inset ring-intellibingrey-500 placeholder:text-gray-400 focus:ring-intellibin-primary"
           />
           <Image
             src="/images/intellibin_eye_icon.png"
@@ -208,11 +243,11 @@ const SignupForm = () => {
         </div>
 
         {formik.touched.password && formik.errors.password ? (
-          <div className="text-red-500 text-sm">{formik.errors.password}</div>
+          <div className="text-sm text-red-500">{formik.errors.password}</div>
         ) : null}
       </div>
 
-      <div className="flex gap-2 align-middle items-center">
+      <div className="flex items-center gap-2 align-middle">
         <input
           type="checkbox"
           id="confirmPrivacy"
@@ -222,12 +257,12 @@ const SignupForm = () => {
         />
         <label htmlFor="confirmPrivacy">
           {" "}
-          I've read and agreed with the{" "}
-          <span className="text-intellibin-primary font-bold">
+          I&apos;ve read and agreed with the{" "}
+          <span className="font-bold text-intellibin-primary">
             Terms and Conditions
           </span>{" "}
           and the{" "}
-          <span className="text-intellibin-primary font-bold">
+          <span className="font-bold text-intellibin-primary">
             {" "}
             Privacy Policy.
           </span>{" "}
@@ -239,14 +274,14 @@ const SignupForm = () => {
 
       <button
         type="submit"
-        className="w-full bg-intellibin-primary text-white py-2 px-4 rounded-md  focus:outline focus:ring mt-2"
+        className="mt-2 w-full rounded-md bg-intellibin-primary px-4 py-2 text-white focus:outline focus:ring"
       >
-        Create Account
+        {registerState === "submitting" ? "Registering..." : " Create Account"}
       </button>
 
-      <small className="font-normal leading-6 text-base text-intellibingrey-400 mt-4 flex items-center justify-center text-center">
+      <small className="mt-4 flex items-center justify-center text-center text-base font-normal leading-6 text-intellibingrey-400">
         Already have an account?{" "}
-        <Link href="/login" className="text-intellibin-primary ml-1">
+        <Link href="/login" className="ml-1 text-intellibin-primary">
           Login
         </Link>
       </small>
