@@ -4,12 +4,12 @@ import Form from "./form";
 
 const Register = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center h-screen overflow-hidden">
+    <div className="flex flex-col md:flex-row justify-center items-center min-h-screen ">
       <div className="mx-4 w-full md:w-1/2 flex justify-center items-center h-auto">
         <Form />
       </div>
       <div
-        className="w-full md:w-1/2 hidden md:flex justify-center items-center h-full"
+        className="8 md:w-1/2 hidden md:flex justify-center items-center h-screen"
         style={{
           backgroundImage: "url('/images/intellibin-onbarding-background.png')",
           backgroundSize: "cover",
