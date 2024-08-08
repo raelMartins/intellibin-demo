@@ -5,12 +5,12 @@ import Link from "next/link";
 
 const Login = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center h-screen overflow-hidden">
-      <div className="mx-4 w-full md:w-1/2 flex justify-center items-center h-1/2 md:h-full">
+    <div className="flex h-screen flex-col items-center justify-center overflow-hidden md:flex-row">
+      <div className="mx-4 flex h-1/2 w-full items-center justify-center md:h-full md:w-1/2">
         <Form />
       </div>
       <div
-        className="w-full md:w-1/2 hidden md:flex justify-center items-center h-full"
+        className="hidden h-full w-full items-center justify-center md:flex md:w-1/2"
         style={{
           backgroundImage: "url('/images/intellibin-onbarding-background.png')",
           backgroundSize: "cover",
@@ -18,7 +18,7 @@ const Login = () => {
         }}
       >
         <Image
-          src="/images/Intellibin_Logo Main.png"
+          src="/images/Intellibin_logo_Main.png"
           alt="login"
           width={250}
           height={250}
