@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { registerUser } from "../actions";
 import { useToast } from "~/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,6 +35,9 @@ const SignupForm = () => {
           email: values.email,
           password: values.password,
           confirm_password: values.confirmPassword,
+          full_name: values.fullName,
+          address: values.location,
+          phone_number: values.phoneNumber,
         });
         if (status === "error") {
           toast({
@@ -65,9 +69,9 @@ const SignupForm = () => {
         confirmPrivacy?: string;
       } = {};
 
-      // if (!values.fullName) {
-      //   errors.fullName = "Required";
-      // }
+      if (!values.fullName) {
+        errors.fullName = "Required";
+      }
       if (!values.email) {
         errors.email = "Required";
       } else if (
@@ -75,12 +79,12 @@ const SignupForm = () => {
       ) {
         errors.email = "Invalid email address";
       }
-      // if (!values.location) {
-      //   errors.location = "Required";
-      // }
-      // if (!values.phoneNumber) {
-      //   errors.phoneNumber = "Required";
-      // }
+      if (!values.location) {
+        errors.location = "Required";
+      }
+      if (!values.phoneNumber) {
+        errors.phoneNumber = "Required";
+      }
       if (!values.password) {
         errors.password = "Required";
       }
@@ -95,6 +99,8 @@ const SignupForm = () => {
       return errors;
     },
   });
+
+  const router = useRouter();
 
   return (
     <form

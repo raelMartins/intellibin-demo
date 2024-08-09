@@ -25,7 +25,7 @@ const Register = () => {
         />
         <div className="absolute">
           <Image
-            src="/images/Intellibin_Logo Main.png"
+            src="/images/Intellibin_logo_main.png"
             alt="login"
             width={250}
             height={250}
