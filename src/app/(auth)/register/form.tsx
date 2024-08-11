@@ -22,6 +22,8 @@ const SignupForm = () => {
     "idle" | "error" | "submitting"
   >("idle");
   const { toast } = useToast();
+  const router = useRouter();
+
   
   const formik = useFormik({
     initialValues: {
@@ -63,6 +65,7 @@ const SignupForm = () => {
           variant: "success",
         });
         setRegisterState("idle");
+        router.push("/confirmotp");
       } catch (error) {
         setRegisterState("error");
         console.log(error)
@@ -112,7 +115,6 @@ const SignupForm = () => {
     },
   });
 
-  const router = useRouter();
 
   return (
     <form
