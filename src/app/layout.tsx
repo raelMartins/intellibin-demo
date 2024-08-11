@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "~/lib/utils";
 import { Toaster } from "~/components/ui/toaster";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const fontInter = Inter({
   subsets: ["latin"],
@@ -19,17 +20,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontInter.variable,
-        )}
-      >
-        {children}
-        <Toaster />
-      </body>
-    </html>
+      <html lang="en">
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontInter.variable,
+          )}
+        >
+                <Toaster />
+                {children}
+        </body>
+      </html>
   );
 }

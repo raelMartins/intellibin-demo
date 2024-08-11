@@ -4,6 +4,7 @@ import Link from "next/link";
 import eyeicon from "../../../../public/images/intellibin_eye_icon.png"
 import { useState } from "react";
 import Image from "next/image";
+import { loginUser } from "../actions";
 
 interface FormValues {
   emailOrPhone: string;
@@ -37,6 +38,7 @@ const Loginform = () => {
     
     onSubmit: (values: FormValues) => {
       alert(JSON.stringify(values, null, 2));
+      loginUser({email:values.emailOrPhone,password:values.password})
     },
   });
 

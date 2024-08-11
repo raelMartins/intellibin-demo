@@ -10,6 +10,10 @@ type RegisterUser = {
   address: string;
   phone_number: string;
 };
+type loginUser = {
+  email: string;
+  password: string;
+}
 export const registerUser = async ({
   email,
   password,
@@ -36,11 +40,12 @@ export const registerUser = async ({
 
   try {
     const res = await axiosInstance.post<{ email: string }>(
-      "/api/register",
+      "/api/register/",
       {
         email,
         password,
         confirm_password: confirm_password,
+        phone_number
       },
       {
         headers: {
@@ -48,7 +53,7 @@ export const registerUser = async ({
         },
       },
     );
-    if (res.data.email) {
+    if (res.data.user.email) {
       return { status: "success", message: "sign up successful" };
     }
     return { status: "error", message: "Couldn't register user" };
@@ -62,6 +67,36 @@ export const registerUser = async ({
     return { status: "error", message: "Internal Server Error" };
   }
 };
+export const loginUser = async ({email,password}:loginUser) => {
+  try {
+    const res = await axiosInstance.post<{ email: string,password:any }>(
+      "/api/login/",
+      {
+        email,
+        password,
+        
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    console.log('done login user',res)
+    // if (res.data.user.email) {
+    //   return { status: "success", message: "sign up successful" };
+    // }
+    // return { status: "error", message: "Couldn't register user" };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return {
+        status: "error",
+        message: error.message ?? "Something went wrong",
+      };
+    }
+    return { status: "error", message: "Internal Server Error" };
+  }
+}
 
 export const authRefresh = async () => {
   const refreshToken = getCookie("intellibin_refresh_token");

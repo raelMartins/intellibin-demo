@@ -6,6 +6,15 @@ import { useState } from "react";
 import { registerUser } from "../actions";
 import { useToast } from "~/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import axios from "axios";
+import { API_CONFIG } from "~/app/constants/api-config";
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,6 +22,7 @@ const SignupForm = () => {
     "idle" | "error" | "submitting"
   >("idle");
   const { toast } = useToast();
+  
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -28,7 +38,6 @@ const SignupForm = () => {
         return;
       }
 
-      console.log(values);
       try {
         setRegisterState("submitting");
         const { status, message } = await registerUser({
