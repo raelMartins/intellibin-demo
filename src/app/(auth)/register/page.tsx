@@ -1,18 +1,12 @@
-'use client'
 import React from "react";
 import Image from "next/image";
 import Form from "./form";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Register = () => {
-  const queryClient = new QueryClient();
-
   return (
     <div className="flex min-h-screen flex-col items-center justify-center md:flex-row md:items-start">
       <div className="mx-4 flex h-auto w-full items-center justify-center md:w-1/2">
-      <QueryClientProvider client={queryClient}>
-         <Form />
-      </QueryClientProvider>
+        <Form />
       </div>
       <div
         className="relative hidden h-full min-h-[776px] w-full items-center justify-center md:flex md:w-1/2"

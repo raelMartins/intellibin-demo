@@ -2,19 +2,10 @@
 import { useFormik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { registerUser } from "../actions";
-import { useToast } from "~/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
-import axios from "axios";
-import { API_CONFIG } from "~/app/constants/api-config";
+import { useState } from "react";
+import { useToast } from "~/components/ui/use-toast";
+import { registerUser } from "../actions";
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +13,8 @@ const SignupForm = () => {
     "idle" | "error" | "submitting"
   >("idle");
   const { toast } = useToast();
-  
+  const router = useRouter();
+
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -49,6 +41,7 @@ const SignupForm = () => {
           phone_number: values.phoneNumber,
         });
         if (status === "error") {
+          console.log(message);
           toast({
             description: message ?? "Something went wrong",
             variant: "destructive",
@@ -62,6 +55,7 @@ const SignupForm = () => {
           variant: "success",
         });
         setRegisterState("idle");
+        router.push("/confirmotp");
       } catch (error) {
         setRegisterState("error");
         toast({ description: "Something went wrong", variant: "destructive" });
@@ -108,8 +102,6 @@ const SignupForm = () => {
       return errors;
     },
   });
-
-  const router = useRouter();
 
   return (
     <form
