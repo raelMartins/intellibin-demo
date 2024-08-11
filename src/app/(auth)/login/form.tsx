@@ -41,7 +41,6 @@ const Loginform = () => {
   });
 
   return (
-    
       <form
         onSubmit={formik.handleSubmit}
         className="max-w-lg mx-auto w-[538px] pt-[40px] pr-[24px] pb-[40px] pl-[24px]"
