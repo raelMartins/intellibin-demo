@@ -22,6 +22,8 @@ const SignupForm = () => {
     "idle" | "error" | "submitting"
   >("idle");
   const { toast } = useToast();
+  const router = useRouter();
+
   
   const formik = useFormik({
     initialValues: {
@@ -34,6 +36,7 @@ const SignupForm = () => {
       confirmPrivacy: false,
     },
     onSubmit: async (values) => {
+      console.log(values)
       if (registerState === "submitting") {
         return;
       }
@@ -62,8 +65,10 @@ const SignupForm = () => {
           variant: "success",
         });
         setRegisterState("idle");
+        router.push("/confirmotp");
       } catch (error) {
         setRegisterState("error");
+        console.log(error)
         toast({ description: "Something went wrong", variant: "destructive" });
       }
     },
@@ -100,6 +105,7 @@ const SignupForm = () => {
       if (!values.confirmPassword) {
         errors.confirmPassword = "Required";
       } else if (values.confirmPassword !== values.password) {
+        console.log("does not match")
         errors.confirmPassword = "Passwords do not match";
       }
       if (!values.confirmPrivacy) {
@@ -109,7 +115,6 @@ const SignupForm = () => {
     },
   });
 
-  const router = useRouter();
 
   return (
     <form

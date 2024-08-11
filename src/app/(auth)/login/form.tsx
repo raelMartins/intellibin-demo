@@ -72,7 +72,7 @@ const Loginform = () => {
         toast({
           description: message ?? "Something went wrong",
         });
-        router.push("/profile");
+        router.push("/home");
       } catch (error) {
         setLoginStatus("idle");
         toast({
