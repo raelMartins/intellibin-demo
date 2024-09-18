@@ -4,6 +4,7 @@ import DisplayUserInfo from "./display-user-info";
 import GoBackBtn from "./go-back-btn";
 
 const ConfirmOtp = () => {
+  
   return (
     <div className="flex h-[90dvh] flex-col items-center justify-center">
       <div className="flex w-[95%] max-w-xl flex-col gap-2">
