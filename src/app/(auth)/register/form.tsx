@@ -5,6 +5,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { registerUser } from "../actions";
 import { useToast } from "~/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import axios from "axios";
+import { API_CONFIG } from "~/app/constants/api-config";
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +22,9 @@ const SignupForm = () => {
     "idle" | "error" | "submitting"
   >("idle");
   const { toast } = useToast();
+  const router = useRouter();
+
+  
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -23,17 +36,20 @@ const SignupForm = () => {
       confirmPrivacy: false,
     },
     onSubmit: async (values) => {
+      console.log(values)
       if (registerState === "submitting") {
         return;
       }
 
-      console.log(values);
       try {
         setRegisterState("submitting");
         const { status, message } = await registerUser({
           email: values.email,
           password: values.password,
           confirm_password: values.confirmPassword,
+          full_name: values.fullName,
+          address: values.location,
+          phone_number: values.phoneNumber,
         });
         if (status === "error") {
           toast({
@@ -49,8 +65,10 @@ const SignupForm = () => {
           variant: "success",
         });
         setRegisterState("idle");
+        router.push("/confirmotp");
       } catch (error) {
         setRegisterState("error");
+        console.log(error)
         toast({ description: "Something went wrong", variant: "destructive" });
       }
     },
@@ -65,9 +83,9 @@ const SignupForm = () => {
         confirmPrivacy?: string;
       } = {};
 
-      // if (!values.fullName) {
-      //   errors.fullName = "Required";
-      // }
+      if (!values.fullName) {
+        errors.fullName = "Required";
+      }
       if (!values.email) {
         errors.email = "Required";
       } else if (
@@ -75,18 +93,19 @@ const SignupForm = () => {
       ) {
         errors.email = "Invalid email address";
       }
-      // if (!values.location) {
-      //   errors.location = "Required";
-      // }
-      // if (!values.phoneNumber) {
-      //   errors.phoneNumber = "Required";
-      // }
+      if (!values.location) {
+        errors.location = "Required";
+      }
+      if (!values.phoneNumber) {
+        errors.phoneNumber = "Required";
+      }
       if (!values.password) {
         errors.password = "Required";
       }
       if (!values.confirmPassword) {
         errors.confirmPassword = "Required";
       } else if (values.confirmPassword !== values.password) {
+        console.log("does not match")
         errors.confirmPassword = "Passwords do not match";
       }
       if (!values.confirmPrivacy) {
@@ -95,6 +114,7 @@ const SignupForm = () => {
       return errors;
     },
   });
+
 
   return (
     <form

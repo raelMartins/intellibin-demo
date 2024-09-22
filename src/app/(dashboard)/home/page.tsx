@@ -1,3 +1,7 @@
+"use client";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { getCookie } from "cookies-next";
 import {
   ArrowRightIcon,
   ChevronRightIcon,
@@ -8,11 +12,38 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const Page = () => {
+  // const [isLoading, setIsLoading] = useState(true)
+  const token = getCookie("intellibin_token");
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["dashboard details"],
+    queryFn: async () => {
+      const res = await axios.get(
+        "https://intellibin-treekle-be-admin.onrender.com/api/wastebin/dashboard/",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      return res.data[0];
+    },
+  });
+
+  // console.log('the data is', data)
+  //if data is loading
+  if (isLoading) {
+    return <h2>Loading....</h2>;
+  }
+  if (isError) {
+    return <span>Error: {error.message}</span>
+  }
   return (
     <div className="px-4 pb-10 md:pb-20">
-      <h2 className="md:text-intellibinGRAY-900 text-intellibinGRAY-600 mb-8 leading-[22px] md:text-xl md:font-semibold">
+      <h2 className="mb-8 leading-[22px] text-intellibinGRAY-600 md:text-xl md:font-semibold md:text-intellibinGRAY-900">
         Good afternoon Ben!
       </h2>
       <div className="flex flex-col gap-5">
@@ -74,7 +105,7 @@ const Page = () => {
           </div>
         </div>
         <div className="flex flex-col gap-3">
-          <div className="text-intellibinGRAY-600 flex items-center justify-between">
+          <div className="flex items-center justify-between text-intellibinGRAY-600">
             <h2 className="text-xl font-semibold md:text-2xl md:leading-[26.4px]">
               Trucks around you
             </h2>
@@ -99,7 +130,7 @@ const Page = () => {
           </div>
         </div>
         <div className="flex flex-col gap-3">
-          <div className="text-intellibinGRAY-600 flex items-center justify-between">
+          <div className="flex items-center justify-between text-intellibinGRAY-600">
             <h2 className="text-xl font-semibold md:text-2xl md:leading-[26.4px]">
               Waste History
             </h2>
@@ -119,7 +150,7 @@ const Page = () => {
                 <h3 className="font-[700] leading-[22.4px] text-intellibin-primary">
                   Waste Pickup
                 </h3>
-                <p className="text-intellibinGRAY-600 text-xs font-medium leading-4">
+                <p className="text-xs font-medium leading-4 text-intellibinGRAY-600">
                   April 16, 2024 2:36pm
                 </p>
               </div>
@@ -132,7 +163,7 @@ const Page = () => {
                 <h3 className="font-[700] leading-[22.4px] text-intellibin-primary">
                   Recyclable Pickup
                 </h3>
-                <p className="text-intellibinGRAY-600 text-xs font-medium leading-4">
+                <p className="text-xs font-medium leading-4 text-intellibinGRAY-600">
                   April 16, 2024 2:36pm
                 </p>
               </div>
@@ -145,7 +176,7 @@ const Page = () => {
                 <h3 className="font-[700] leading-[22.4px] text-intellibin-primary">
                   Waste Pickup
                 </h3>
-                <p className="text-intellibinGRAY-600 text-xs font-medium leading-4">
+                <p className="text-xs font-medium leading-4 text-intellibinGRAY-600">
                   April 16, 2024 2:36pm
                 </p>
               </div>
@@ -158,7 +189,7 @@ const Page = () => {
                 <h3 className="font-[700] leading-[22.4px] text-intellibin-primary">
                   Waste Pickup
                 </h3>
-                <p className="text-intellibinGRAY-600 text-xs font-medium leading-4">
+                <p className="text-xs font-medium leading-4 text-intellibinGRAY-600">
                   April 16, 2024 2:36pm
                 </p>
               </div>
