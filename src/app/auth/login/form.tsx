@@ -179,7 +179,7 @@ const Loginform = () => {
         type="submit"
         className="w-full rounded-md bg-intellibin-primary px-4 py-2 text-white focus:outline focus:ring"
       >
-        {loginStatus === "logging" ? "Loggin in..." : "Login"}
+        {loginStatus === "logging" ? "Logging in..." : "Login"}
       </button>
       <small className="mt-4 text-base font-normal leading-6 text-intellibingrey-400">
         Not a member?{" "}

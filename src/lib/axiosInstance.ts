@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { getCookie, getCookies } from "cookies-next";
-import { authRefresh } from "~/app/(auth)/actions";
+import { authRefresh } from "~/app/auth/actions";
 // import { cookies } from "next/headers";
 
 const baseURL = "https://intellibin-treekle-be-admin.onrender.com";
